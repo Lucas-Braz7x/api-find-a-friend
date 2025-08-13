@@ -16,6 +16,37 @@ export const auth = async (request: FastifyRequest, reply: FastifyReply) => {
     password,
   });
 
-  return reply.status(200).send({ org });
+  const token = await reply.jwtSign(
+    {
+      role: "ADMIN",
+    },
+    {
+      sign: {
+        sub: org.id,
+      },
+    }
+  );
+
+  const refreshToken = await reply.jwtSign(
+    {
+        role: "ADMIN",
+    },
+    {
+      sign: {
+        sub: org.id,
+        expiresIn: "7d",
+      },
+    }
+  );
+
+  return reply
+    .setCookie("refreshToken", refreshToken, {
+      path: "/",
+      secure: true,
+      sameSite: true,
+      httpOnly: true,
+    })
+    .status(200)
+    .send({ token });
 
 }

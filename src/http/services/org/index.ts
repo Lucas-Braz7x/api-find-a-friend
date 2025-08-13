@@ -17,10 +17,26 @@ export class OrgService {
 
   async create(data: RequestCreateOrg){
 
-    const password_hash = await hash(data.password, 6)
+    const {
+      name,
+      city,
+      phone,
+      address,
+      email,
+      description,
+      password
+    } = data
+
+    const password_hash = await hash(password, 6)
+
 
     const org = await this.orgRepository.create({
-      ...data,
+      name,
+      city,
+      phone,
+      address,
+      email,
+      description,
       password_hash,
     })
 

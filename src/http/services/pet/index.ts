@@ -24,8 +24,10 @@ export class PetService {
     return { pet }
   }
 
-  async findManyByCity(city: string){
-    const pets = await this.petRepository.findManyByCity(city)
+  async findManyByCity({city, query}: {
+    city: string, query?: string
+  }){
+    const pets = await this.petRepository.findManyByCity(city, query)
 
     return {
       pets

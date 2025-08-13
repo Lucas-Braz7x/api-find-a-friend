@@ -14,10 +14,15 @@ export class PetRepository implements BasePetRepository {
     })
   }
 
-  findManyByCity(city: string): Promise<Pet[]> {
+  findManyByCity(city: string, query?: string): Promise<Pet[]> {
     return prisma.pet.findMany({
       where: {
-        city,
+        city: {
+          contains: city
+        },
+        description: {
+          contains: query
+        },
         available: true
       }
     })
