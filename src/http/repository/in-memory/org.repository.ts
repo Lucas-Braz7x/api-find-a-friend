@@ -1,6 +1,6 @@
 import { Prisma,  Org } from '@prisma/client';
 import { randomUUID } from "node:crypto";
-import { BaseOrgRepository } from '../prisma/dto/base-org-repository';
+import { BaseOrgRepository } from '../dto/base-org-repository';
 
 export class InMemoryOrgRepository  implements BaseOrgRepository{
   public itens: Org[] = [];

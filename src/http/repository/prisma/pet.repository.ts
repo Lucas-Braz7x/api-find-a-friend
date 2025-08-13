@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import type { Pet, Prisma } from "@prisma/client";
-import { BasePetRepository } from "./dto/base-pet-repository";
+import { BasePetRepository } from "../dto/base-pet-repository";
 
 export class PetRepository implements BasePetRepository {
   constructor() {}
