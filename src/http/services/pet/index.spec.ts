@@ -2,15 +2,15 @@ import { expect, describe, it, beforeEach } from "vitest";
 import { PetService } from '.';
 import { InMemoryPetRepository } from '@/http/repository/in-memory/pet.repository';
 
-let inMemoryUserDatabaseRepository: InMemoryPetRepository;
+let inMemoryDatabaseRepository: InMemoryPetRepository;
 
 let sut: PetService;
 
 describe("Pet Service", () => {
   beforeEach(() => {
-    inMemoryUserDatabaseRepository = new InMemoryPetRepository();
+    inMemoryDatabaseRepository = new InMemoryPetRepository();
 
-    sut = new PetService(inMemoryUserDatabaseRepository);
+    sut = new PetService(inMemoryDatabaseRepository);
   });
 
   it("Deve ser possível cadastrar um pet", async () => {
