@@ -1,4 +1,4 @@
-import { BasePetRepository } from '@/http/repository/prisma/dto/base-pet-repository';
+import { BasePetRepository } from '@/http/repository/dto/base-pet-repository';
 import { Prisma } from '@prisma/client';
 
 

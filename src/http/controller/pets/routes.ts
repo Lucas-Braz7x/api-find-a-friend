@@ -1,10 +1,7 @@
 import { FastifyInstance } from "fastify";
-
-//import { verifyJwt } from "@/http/middleware/verify-jwt";
 import { create } from "./create.controller";
+import { verifyJwt, verifyUserRole } from '@/http/middleware';
 
 export const petsRouter = async (app: FastifyInstance) => {
-  //app.addHook("onRequest", verifyJwt);
-
-  app.post("/",  /* { onRequest: [verifyUserRole("ADMIN")] } */ create)
+  app.post("/",  { onRequest: [verifyJwt, verifyUserRole("ADMIN")] }, create)
 };
