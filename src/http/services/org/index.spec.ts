@@ -30,4 +30,23 @@ describe("ORG Service", () => {
 
     expect(org.id).toEqual(expect.any(String));
   });
+
+  it("Deve ser possível buscar uma ORG por email", async () => {
+
+    const data = {
+      name: "Nova org",
+      city: "Areal",
+      phone: "2221-2530",
+      address: "Travessa",
+      email: "org@gmail.com",
+      description: "Focada no bem estar social",
+      password: "123456",
+    }
+
+    await sut.create(data)
+
+    const { org } = await sut.findByEmail("org@gmail.com")
+
+    expect(org?.email).toEqual("org@gmail.com");
+  });
 })

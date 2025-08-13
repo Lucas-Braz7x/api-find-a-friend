@@ -1,4 +1,4 @@
-import { BaseOrgRepository } from '@/http/repository/prisma/dto/base-org-repository';
+import { BaseOrgRepository } from '@/http/repository/dto/base-org-repository';
 import { hash } from 'bcryptjs';
 
 interface RequestCreateOrg {
@@ -23,6 +23,12 @@ export class OrgService {
       ...data,
       password_hash,
     })
+
+    return { org }
+  }
+
+  async findByEmail(email: string){
+    const org = await this.orgRepository.findByEmail(email)
 
     return { org }
   }
